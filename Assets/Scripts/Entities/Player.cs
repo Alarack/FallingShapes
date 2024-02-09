@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
     }
 
-
     private void OnTriggerEnter2D(Collider2D other) {
 
         CollectibleObject collectible = other.GetComponent<CollectibleObject>();
@@ -21,7 +20,6 @@ public class Player : MonoBehaviour {
             collectible.Collect();
             audioSource.PlayOneShot(pickUpSound);
         }
-
     }
 
 

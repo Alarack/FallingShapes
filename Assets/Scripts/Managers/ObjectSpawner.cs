@@ -5,10 +5,12 @@ using UnityEngine;
 public class ObjectSpawner : Singleton<ObjectSpawner>
 {
 
+    [Header("Timing and Activation Variables")]
     public float minSpawnTime = 0.5f;
     public float maxSpawnTime = 2f;
     public bool activeSpawning;
 
+    [Header("Spawnables and Spawn Points")]
     public List<CollectibleObject> spawnables = new List<CollectibleObject>();
     public List<Transform> spawnPoints = new List<Transform>();
 
@@ -33,21 +35,13 @@ public class ObjectSpawner : Singleton<ObjectSpawner>
     }
 
     private IEnumerator SpawnObjects() {
-
        RandomizeWaitTime();
 
-
         while(activeSpawning == true) {
-
             CreateCollectibleObject();
-
             yield return new WaitForSeconds(waitTime);
-
             RandomizeWaitTime();
-
-
         }
-
     }
 
     private void RandomizeWaitTime() {

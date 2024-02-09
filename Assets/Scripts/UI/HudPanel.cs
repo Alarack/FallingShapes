@@ -14,7 +14,6 @@ public class HudPanel : Singleton<HudPanel> {
 
     public GameObject gameOverScreen;
 
-
     private void Start() {
         BeginTimer();
     }
@@ -59,7 +58,6 @@ public class HudPanel : Singleton<HudPanel> {
         gameOverScreen.SetActive(true);
 
     }
-
 
     public void OnRestartClicked() {
         ResetScore();

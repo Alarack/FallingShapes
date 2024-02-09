@@ -17,9 +17,6 @@ public class CollectibleObject : MonoBehaviour
     public GameObject spawnVFX;
     public GameObject collectVFX;
 
-
-
-
     private Rigidbody2D myBody;
 
 
@@ -29,7 +26,7 @@ public class CollectibleObject : MonoBehaviour
 
     private void Start() {
         ApplyRandomForce();
-        SpawnVFX();
+        SpawnVFX(spawnVFX);
     }
 
     private void ApplyRandomForce() {
@@ -38,36 +35,28 @@ public class CollectibleObject : MonoBehaviour
 
         Vector2 motion = new Vector2(xForce, yForce);
 
-
         myBody.AddForce(motion, ForceMode2D.Impulse);
         myBody.angularVelocity = Random.Range(-360f, 360f);
     }
 
 
     public void Collect() {
-        SpawnCollectionVFX();
+        SpawnVFX(collectVFX);
         HudPanel.UpdateScoreText(points);
         Destroy(gameObject);
     }
 
     public void ForceDie() {
-        SpawnVFX();
+        SpawnVFX(spawnVFX);
         Destroy(gameObject);
     }
 
-    private void SpawnCollectionVFX() {
-        if (collectVFX == null)
+
+    private void SpawnVFX(GameObject prefab) {
+        if (prefab == null)
             return;
 
-        GameObject activeVFX = Instantiate(collectVFX, transform.position, Quaternion.identity);
-        Destroy(activeVFX, 1f);
-    }
-
-    private void SpawnVFX() {
-        if (spawnVFX == null)
-            return;
-
-        GameObject activeVFX = Instantiate(spawnVFX, transform.position, transform.rotation);
+        GameObject activeVFX = Instantiate(prefab, transform.position, Quaternion.identity);
         Destroy(activeVFX, 1f);
     }
 }

@@ -8,7 +8,6 @@ public class BasicMovement : MonoBehaviour
     [Header("Movement Variables")]
     public float moveSpeed;
 
-
     private Vector2 direction;
 
     public Rigidbody2D MyRigidbody { get; protected set; }
